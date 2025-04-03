@@ -1,9 +1,21 @@
+using Application.Common;
+using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+// AppConfig -> ConnectionStrings
+builder.Services.Configure<AppConfig>(builder.Configuration.GetSection("ConnectionStrings"));
+
+// Configurações do Postgres
+builder.Services.AddDbContext<FinanceDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection")));
 
 var app = builder.Build();
 
