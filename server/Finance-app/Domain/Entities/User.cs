@@ -1,5 +1,4 @@
-﻿// Domain/Entities/User.cs
-using Domain.Enums;
+﻿using Domain.Enums;
 using Domain.Utils;
 using System.ComponentModel.DataAnnotations;
 
@@ -20,7 +19,7 @@ public class User
     public string Email { get; set; }
 
     [Required]
-    public string PasswordHash { get; set; } 
+    public string PasswordHash { get; set; }
 
     [MaxLength(20)]
     public string? Role { get; set; }
